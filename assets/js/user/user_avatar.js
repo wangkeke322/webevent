@@ -50,25 +50,10 @@ $(function () {
             success: function (res) {
                 if (res.status !== 0) {
                     return layer.msg('头像上传失败')
-
                 }
                 layer.msg('头像上传成功')
                 window.parent.getUserInfo()
-
-
             }
         })
-
-
-
-
-
-
-
-
     })
-
-
-
-
 })
