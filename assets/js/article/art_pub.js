@@ -2,7 +2,7 @@ $(function () {
     var layer = layui.layer
     var form = layui.form
 
-    // 定义加载分类可选项的方法 
+    // 文章类别---分类可选项的方法 
     initCate()
     function initCate() {
         $.ajax({
@@ -12,12 +12,12 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('获取文章分类列表失败！')
                 }
-                layer.msg('获取文章分类列表成功！')
-
+                // layer.msg('获取文章分类列表成功！')
                 var htmlStr = template('tpl-cate', res)
-                console.log(htmlStr);
+
+                // <select name="cate_id"> 分类选项界面渲染
                 $('[name=cate_id]').html(htmlStr)
-                form.render()
+                form.render()   // 更新全部-- select选择框局部刷新
             }
         })
     }
@@ -32,6 +32,7 @@ $(function () {
     // 2. 裁剪选项
     var options = {
         aspectRatio: 400 / 280,
+        // 预览区域 <div class="img-preview"></div>
         preview: '.img-preview'
     }
 
@@ -57,7 +58,8 @@ $(function () {
 
     // 发布
     var art_state = '已发布'
-    // 点击存为草稿 将发布的状态改为草稿
+
+    // 点击 存为草稿 #btnSave2 将发布的状态改为草稿
     $('#btnSave2').on('click', function () {
         art_state = '草稿'
     })
@@ -80,7 +82,7 @@ $(function () {
                 // 将 Canvas 画布上的内容，转化为文件对象
                 // 得到文件对象后，进行后续的操作
                 fd.append('cover_img', blob)
-                console.log(fd);
+                // console.log(fd);
                 // 调用发表文章函数
                 publishArticle(fd)
             })
